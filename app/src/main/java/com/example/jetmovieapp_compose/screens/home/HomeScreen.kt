@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.jetmovieapp_compose.MovieRow
+import com.example.jetmovieapp_compose.model.Movie
+import com.example.jetmovieapp_compose.model.getMovies
 import com.example.jetmovieapp_compose.navigation.MovieScreens
+import com.example.jetmovieapp_compose.widgets.MovieRow
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -26,16 +28,8 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    movieList: List<String> = listOf(
-    "Avatar",
-    "300",
-    "Harry Potter",
-    "Happiness",
-    "Cross the line...",
-    "Be Happy",
-    "Happy Feet",
-    "Life"
-)) {
+    movieList: List<Movie> = getMovies()
+) {
     LazyColumn {
         items(items = movieList) {
             MovieRow(movie = it) { movie ->
